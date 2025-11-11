@@ -92,8 +92,11 @@ public class CanonController : MonoBehaviour
     public void ActivatePowerUp()
     {
         if (!doubleDamageActive || !shieldCanonActive)
+        {
             powerUpEffect.SetActive(true);
             StartCoroutine(DoubleDamageCoroutine());
+        }
+       
     }
 
     private IEnumerator DoubleDamageCoroutine()
@@ -106,6 +109,7 @@ public class CanonController : MonoBehaviour
         shieldCanonActive = false;
         powerUpEffect.SetActive(false);
         Debug.Log("Double Damage Ended!");
+        print(doubleDamageActive);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

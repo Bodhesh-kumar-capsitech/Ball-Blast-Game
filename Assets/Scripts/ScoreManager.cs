@@ -9,11 +9,12 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI highscoreText;
     private int currentScore = 0;
     private int highScore = 0;
-
+    private StartGame level;
    
     private void Awake()
     {
         instance = this;
+        level = StartGame.instance;
         highScore = PlayerPrefs.GetInt("HighScore : ", 0);
         UpdateScoreText();
     }
@@ -46,8 +47,18 @@ public class ScoreManager : MonoBehaviour
         if (yourscoreText != null)
             yourscoreText.text = "Your Score : " + currentScore;
 
-        if (highscoreText != null)
-            highscoreText.text = "High Score : " + highScore;
+        //if (highscoreText != null && level.isBeginner == true)
+        //{
+        //    highscoreText.text = "High Score : " + highScore;
+        //}
+
+
+        //if (highscoreText != null && level.isIntermediate == true)
+        //{
+        //    highscoreText.text = "High Score : " + highScore;
+        //}
+        highscoreText.text = "High Score : " + highScore;
+
     }
 
     public void ResetHighScore()

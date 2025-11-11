@@ -282,15 +282,18 @@ MonoBehaviour:
   HP: 1
   hpText: {fileID: 7969225330048802052}
   moveSpeed: 0.5
-  rotaionSpeed: 7.99
   leftmoveLimit: -1.84
   rightmoveLimit: 1.93
   coin2Pos: 0
   coinPrefab: {fileID: 8742477866702320903, guid: f998734bd7d494441b49a958cc62e783, type: 3}
+  isEntering: 1
+  entrySpeed: 2
+  targetX: 0
   ballPrefab: {fileID: 7348889173902431528}
   splitChance: 0.3
   splitScale: 0.7
   splitOffset: 0.3
+  ballDestroyEffect: {fileID: 1301697207402410478, guid: 39f852c28f9c3fd45a427c24f3564ba7, type: 3}
 --- !u!50 &3293900399186354586
 Rigidbody2D:
   serializedVersion: 5

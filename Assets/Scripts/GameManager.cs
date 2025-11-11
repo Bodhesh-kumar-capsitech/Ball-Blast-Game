@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button playButton;
     [SerializeField] private Button pauseButton;
     [SerializeField] private Button exitButton;
+    [SerializeField] private Button homeButton;
+    [SerializeField] private GameObject gameover;
     private GameOver over;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -48,6 +50,11 @@ public class GameManager : MonoBehaviour
 
         AudioController.instance.ButtonClickSound();
 
+    }
+
+    public void OnHome()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void OnRestart()

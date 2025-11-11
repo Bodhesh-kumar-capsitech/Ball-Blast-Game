@@ -8,14 +8,32 @@ public class BallSpawn : MonoBehaviour
     [SerializeField] private float maxX = 1.93f;
     [SerializeField] private float minY = 1.77f;
     [SerializeField] private float maxY = 4.25f;
-    [SerializeField] private float spawnDelay = 2.0f; 
+    private float spawnDelay = 2.0f;
+    private float delayTime;
+    private StartGame level;
 
+    private void Awake()
+    {
+        level = StartGame.instance;
+    }
     void Start()
     {
         //Start random spawning
         StartCoroutine(SpawnRoutine());
     }
 
+    private void Update()
+    {
+        if (level.isBeginner == true)
+        {
+            delayTime = 2.0f;
+        }
+        else if (level.isIntermediate == true)
+        {
+            delayTime = 1.2f;
+        }
+
+    }
     void SpawnBall()
     {
         //pick random ball
@@ -37,7 +55,6 @@ public class BallSpawn : MonoBehaviour
     
     private IEnumerator SpawnRoutine()
     {
-        float delayTime = Random.Range(2f,3f);
         yield return new WaitForSeconds(spawnDelay);
         while (true)
         {

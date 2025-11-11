@@ -33,6 +33,7 @@ public class PowerUpController : MonoBehaviour
         else
         {
             isPowerUpActivated = false;
+            CanonController.instance.doubleDamageActive = false;
         }
     }
 }

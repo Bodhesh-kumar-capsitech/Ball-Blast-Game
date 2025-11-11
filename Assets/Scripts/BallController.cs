@@ -22,6 +22,7 @@ public class BallController : MonoBehaviour
     [SerializeField] private float splitChance = 0.3f; // 30% chance to duplicate
     [SerializeField] private float splitScale = 0.3f;  // smaller size for duplicates
     [SerializeField] private float splitOffset = 0.3f; // distance between the new balls
+    public ParticleSystem ballDestroyEffect;
     private float gravityscale = 0.6f;
     private GameObject[] balls;
 
@@ -53,6 +54,7 @@ public class BallController : MonoBehaviour
         {
             isEntering = false;
         }
+
     }
 
     private void Update()
@@ -119,6 +121,9 @@ public class BallController : MonoBehaviour
             {
                 //Destroy directly if small
                 AudioController.instance.BallDestroySound();
+                var effect = Instantiate(ballDestroyEffect, transform.position, Quaternion.identity);
+                effect.Play();
+                Destroy(effect.gameObject,1.0f);
                 Destroy(gameObject);
                 SpawnCoin();
             }
@@ -126,6 +131,9 @@ public class BallController : MonoBehaviour
 
         if( HP < 0 )
         {
+           var effect = Instantiate(ballDestroyEffect, transform.position, Quaternion.identity);
+            effect.Play();
+            Destroy(effect.gameObject,1.0f);
             Destroy(gameObject);
             SpawnCoin();
         }
@@ -192,10 +200,17 @@ public class BallController : MonoBehaviour
         {
 
             int damage = CanonController.instance.doubleDamageActive ? 2 : 1;
+            print("Double damage active:" + CanonController.instance.doubleDamageActive);
+            print("Damage is:" + damage);
             TakeDamage(damage);
             Destroy(collision.gameObject);
         }
+        else
+        {
+            CanonController.instance.doubleDamageActive = false;
+        }
     }
+
 
     public void DestroyOnGameOver()
     {
