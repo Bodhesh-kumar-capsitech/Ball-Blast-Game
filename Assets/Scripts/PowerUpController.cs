@@ -30,10 +30,6 @@ public class PowerUpController : MonoBehaviour
             Destroy(gameObject);
             AudioController.instance.CoinCollectSound();
         }
-        else
-        {
-            isPowerUpActivated = false;
-            CanonController.instance.doubleDamageActive = false;
-        }
+        
     }
 }

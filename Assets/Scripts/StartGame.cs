@@ -16,12 +16,7 @@ public class StartGame : MonoBehaviour
     {
         instance = this;
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
+   
     // Update is called once per frame
     void Update()
     {
@@ -51,8 +46,6 @@ public class StartGame : MonoBehaviour
 
     public void GameStart()
     {
-        //SceneManager.LoadScene(1);
-
         beginner.gameObject.SetActive(true);
         intermediate.gameObject.SetActive(true);
         taptostart.gameObject.SetActive(false);
@@ -62,8 +55,6 @@ public class StartGame : MonoBehaviour
     {
         isBeginner = true;
         isIntermediate = false;
-        //if (isBeginner == true)
-        //SceneManager.LoadScene(1);
     }
 
     public void IntermediateLevel()

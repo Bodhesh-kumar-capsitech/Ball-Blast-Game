@@ -293,7 +293,7 @@ MonoBehaviour:
   splitChance: 0.3
   splitScale: 0.7
   splitOffset: 0.3
-  ballDestroyEffect: {fileID: 1301697207402410478, guid: 39f852c28f9c3fd45a427c24f3564ba7, type: 3}
+  ballDestroyEffect: {fileID: 8574640003461607735, guid: 3a7288ab01f95ca4197569870f3fe14d, type: 3}
 --- !u!50 &8689280192489476863
 Rigidbody2D:
   serializedVersion: 5

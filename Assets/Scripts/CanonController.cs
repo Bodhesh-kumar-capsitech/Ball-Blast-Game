@@ -81,12 +81,8 @@ public class CanonController : MonoBehaviour
     //Bullet spawn
     void AutoFire()
     {
-        //if (Time.time >= nextFireTime)
-        //{
-        //    nextFireTime = Time.time + fireRate;
         Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         AudioController.instance.BulletFireSound();
-        //}
     }
 
     public void ActivatePowerUp()

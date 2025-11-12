@@ -23,6 +23,7 @@ public class BallController : MonoBehaviour
     [SerializeField] private float splitScale = 0.3f;  // smaller size for duplicates
     [SerializeField] private float splitOffset = 0.3f; // distance between the new balls
     public ParticleSystem ballDestroyEffect;
+    private SpriteRenderer rd;
     private float gravityscale = 0.6f;
     private GameObject[] balls;
 
@@ -83,6 +84,7 @@ public class BallController : MonoBehaviour
 
         MoveBall();
         transform.Rotate(0,0, rotaionSpeed * (-moveDirection));
+        var effectSystem = ballDestroyEffect.GetComponent<ParticleSystem>();
 
     }
 
@@ -219,6 +221,7 @@ public class BallController : MonoBehaviour
         {
             Destroy(ball);
         }
+        Destroy(ballDestroyEffect.gameObject);
     }
 
 }

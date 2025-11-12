@@ -10,6 +10,7 @@ TagManager:
   - Coin
   - Ball
   - PowerUp
+  - Effect
   layers:
   - Default
   - TransparentFX

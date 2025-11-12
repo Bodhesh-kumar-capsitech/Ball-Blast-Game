@@ -21,7 +21,6 @@ public class CoinController : MonoBehaviour
 
     private void Update()
     {
-        //MoveCoin();
 
         if (transform.position.y < -minPos)
         {
@@ -34,24 +33,6 @@ public class CoinController : MonoBehaviour
         }
 
     }
-
-    //Move ball with in range
-    //private void MoveCoin()
-    //{
-    //    transform.Translate(Vector2.right * moveDirection * moveSpeed * Time.deltaTime);
-
-    //    if (transform.position.x > rightmoveLimit)
-    //    {
-    //        transform.position = new Vector2(rightmoveLimit, transform.position.y);
-    //        moveDirection = -1;
-    //    }
-    //    else if (transform.position.x < LeftmoveLimit)
-    //    {
-    //        transform.position = new Vector2(LeftmoveLimit, transform.position.y);
-    //        moveDirection = 1;
-    //    }
-    //}
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Canon"))

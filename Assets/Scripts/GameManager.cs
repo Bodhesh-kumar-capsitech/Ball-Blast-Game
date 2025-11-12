@@ -11,18 +11,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button homeButton;
     [SerializeField] private GameObject gameover;
     private GameOver over;
+    public static GameManager instance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        instance = this;
         over = GameOver.instance;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void OnPlay()
     {
         Time.timeScale = 1.0f;

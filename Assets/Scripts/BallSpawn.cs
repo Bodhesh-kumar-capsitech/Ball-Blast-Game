@@ -51,7 +51,6 @@ public class BallSpawn : MonoBehaviour
         //Spawn the ball
         Instantiate(randomBall, spawnPos, Quaternion.identity);
     }
-
     
     private IEnumerator SpawnRoutine()
     {
