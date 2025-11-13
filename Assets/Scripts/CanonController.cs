@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class CanonController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private float LeftmoveLimit = -1.84f;
     [SerializeField] private float RightmoveLimit = 1.93f;
     [SerializeField] private GameObject bulletPrefab;
@@ -17,7 +18,8 @@ public class CanonController : MonoBehaviour
 
     private float nextFireTime;
     private int moveDirection = 0;
-
+    private bool isDragging = false;
+    private Vector3 dragTargetPos;
     public bool doubleDamageActive = false;
     public bool shieldCanonActive = false;
     private float powerUpActiveduration = 6f;
@@ -32,7 +34,6 @@ public class CanonController : MonoBehaviour
     {
         
         HandleInput();
-        MoveCanon();
        
     }
 
@@ -40,43 +41,36 @@ public class CanonController : MonoBehaviour
     //Canon Movement
     void HandleInput()
     {
-        if (Input.GetMouseButton(0)) 
+        //Drag movement for both mouse click and phone
+        if (Input.GetMouseButton(0))
         {
-            Vector3 clickPos = Input.mousePosition;
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 screenPos = Input.mousePosition;
+            mousePos.z = 0;
 
-            if (clickPos.y < Screen.height * 0.5f)
+            if (screenPos.y < Screen.height * 0.5f)
             {
-                if (clickPos.x < Screen.width / 2)
-                    moveDirection = -1;
-                else
-                    moveDirection = 1;
-            }
+                dragTargetPos = new Vector3(
+                    mousePos.x,
+                    transform.position.y,
+                    transform.position.z
+                );
 
-            //Dont move if not clicked to the screen
-            else
-            {
-                moveDirection = 0;
+                transform.position = Vector3.Lerp(transform.position, dragTargetPos, Time.deltaTime * 15f);
+
             }
-        }
-        else
-        {
-            moveDirection = 0; 
         }
 
         float horizontal = Input.GetAxis("Horizontal");
-        if (Mathf.Abs(horizontal) > 0.1f)
-            moveDirection = horizontal > 0 ? 1 : -1;
-    }
 
-    void MoveCanon()
-    {
-        transform.Translate(Vector2.right * moveDirection * moveSpeed * Time.deltaTime);
-
+        //Movement for pc left&right input
+        transform.Translate(Vector2.right * horizontal * moveSpeed * Time.deltaTime);
 
         //maximum left & right canon movement
         float clampedX = Mathf.Clamp(transform.position.x, LeftmoveLimit, RightmoveLimit);
         transform.position = new Vector2(clampedX, transform.position.y);
     }
+
 
     //Bullet spawn
     void AutoFire()
